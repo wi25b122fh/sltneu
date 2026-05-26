@@ -1,9 +1,21 @@
-.idea
-# Compiled class file
-*.class
-/target
+#Maven build output
+/target/
 
-# Log file
+# Compiled class files
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs & temp
 *.log
 
 # BlueJ files
