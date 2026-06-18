@@ -1,24 +1,30 @@
-name: Java CI with Maven
+name: Build and Release JAR
 
 on:
   push:
-    branches: [ "main", "feature/*" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/actions-setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          cache: 'maven'
 
-      - name: Build and Test with Maven
+      - name: Build with Maven (Create JAR)
         run: mvn -B package --file pom.xml
+
+      - name: Upload JAR Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tictactoe-jar
+          path: target/*.jar
